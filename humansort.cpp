@@ -33,7 +33,7 @@ int main() {
 
     while (true) {
         int choice;
-        std::cout << "0. Exit\n1. Create Human\n2. Remove Human\n3. Show Human\nChoice: ";
+        std::cout << "0. Exit\n1. Create Human\n2. Remove Human\n3. Show Human\n4. Sort by Name\n5. Sort by Age\nChoice: ";
         std::cin >> choice;
 
         switch (choice) {
@@ -62,6 +62,22 @@ int main() {
                 for (const auto &h : human) {
                     std::cout << "Name: " << h.name << ", Age: " << h.age << "\n";
                 }
+                break;
+            }
+            case 4: {
+                std::sort(human.begin(), human.end(), [](const Human& a, const Human& b) {
+                   return a.name < b.name;
+                });
+
+                std::cout << "Successfully sorted!\n";
+                break;
+            }
+            case 5: {
+                std::sort(human.begin(), human.end(), [](const Human& a, const Human& b) {
+                   return a.age < b.age;
+                });
+
+                std::cout << "Successfully sorted!\n";
                 break;
             }
             default: continue;
