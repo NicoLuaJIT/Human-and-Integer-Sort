@@ -1,5 +1,7 @@
-# Humansort
-Created to sort humans (hobby project)
+# Humansort && Integersort
+Created to sort humans and integers.
+
+This is just a hobby project, do not take it seriously.
 
 # How To Run humansort.cpp
 Get the `humansort.cpp` file and use a compiler like g++ to compile it into an executable.
