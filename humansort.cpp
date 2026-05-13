@@ -15,6 +15,10 @@ void inputHuman(int &age, std::string &name) {
     std::cin >> age;
 }
 
+void insertHumanIntoVector(int &age, std::string &name, std::vector<Human> &v) {
+    v.push_back({name, age});
+}
+
 bool removeHuman(int &age, std::string &name, std::vector<Human> &v) {
     Human h = {name, age};
     auto it = std::find_if(v.begin(), v.end(), [&](const Human &a) {
@@ -28,12 +32,73 @@ bool removeHuman(int &age, std::string &name, std::vector<Human> &v) {
     return false;
 }
 
+void showHumans(std::vector<Human> &v) {
+    for (const auto &h : v) {
+        std::cout << "Name: " << h.name << " | Age: " << h.age << "\n";
+    }
+}
+
+void sortAtoZ(std::vector<Human> &vec) {
+    std::sort(vec.begin(), vec.end(), [](const Human &a, const Human &b) {
+        return a.name < b.name; 
+    });
+}
+
+void sortZtoA(std::vector<Human> &vec) {
+    std::sort(vec.begin(), vec.end(), [](const Human &a, const Human &b) {
+        return a.name > b.name; 
+    });
+}
+
+void sortByName(std::vector<Human> &v) {
+    bool isRunning = true;
+    while (isRunning) {
+        int choice;
+        std::cout << "Choose how you want to sort.\n0. Exit\n1. A to Z\n2. Z to A\nChoice: ";
+        std::cin >> choice;
+        
+        switch (choice) {
+            case 0: isRunning = false; break;
+            case 1: sortAtoZ(v); std::cout << "Successfully sorted!\n"; isRunning = false; break;
+            case 2: sortZtoA(v); std::cout << "Successfully sorted!\n"; isRunning = false; break;
+        }
+    }
+}
+
+void sortYoungestToOldest(std::vector<Human> &vec) {
+    std::sort(vec.begin(), vec.end(), [](const Human &a, const Human &b) {
+       return a.age < b.age; 
+    });
+}
+
+void sortOldestToYoungest(std::vector<Human> &vec) {
+    std::sort(vec.begin(), vec.end(), [](const Human &a, const Human &b) {
+       return a.age > b.age; 
+    });
+}
+
+void sortByAge(std::vector<Human> &v) {
+    bool isRunning = true;
+    while (isRunning) {
+        int choice;
+        std::cout << "Choose how you want to sort.\n0. Exit\n1. Youngest to Oldest\n2. Oldest to Youngest\nChoice: ";
+        std::cin >> choice;
+        
+        switch (choice) {
+            case 0: isRunning = false; break;
+            case 1: sortYoungestToOldest(v); std::cout << "Successfully sorted!\n"; isRunning = false; break;
+            case 2: sortOldestToYoungest(v); std::cout << "Successfully sorted!\n"; isRunning = false; break;
+        }
+    }
+}
+
+
 int main() {
     std::vector<Human> human = {};
 
     while (true) {
         int choice;
-        std::cout << "0. Exit\n1. Create Human\n2. Remove Human\n3. Show Human\n4. Sort by Name\n5. Sort by Age\nChoice: ";
+        std::cout << "0. Exit\n1. Create Human\n2. Remove Human\n3. Show Human\n4. Sort by Name (Alphabetical)\n5. Sort By Age\nChoice: ";
         std::cin >> choice;
 
         switch (choice) {
@@ -42,7 +107,7 @@ int main() {
                 std::string name;
                 int age;
                 inputHuman(age, name);
-                human.push_back({name, age});
+                insertHumanIntoVector(age, name, human);
                 std::cout << "Human successfully added!\n";
                 break;
             }
@@ -59,25 +124,15 @@ int main() {
             }
             case 3: {
                 std::cout << "Humans:\n";
-                for (const auto &h : human) {
-                    std::cout << "Name: " << h.name << ", Age: " << h.age << "\n";
-                }
+                showHumans(human);
                 break;
             }
             case 4: {
-                std::sort(human.begin(), human.end(), [](const Human& a, const Human& b) {
-                   return a.name < b.name;
-                });
-
-                std::cout << "Successfully sorted!\n";
+                sortByName(human);
                 break;
             }
             case 5: {
-                std::sort(human.begin(), human.end(), [](const Human& a, const Human& b) {
-                   return a.age < b.age;
-                });
-
-                std::cout << "Successfully sorted!\n";
+                sortByAge(human);
                 break;
             }
             default: continue;
