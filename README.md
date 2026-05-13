@@ -1,5 +1,24 @@
 # Humansort
 Created to sort humans (hobby project)
 
-# How To Run
-Get the `humansort.cpp` file and use a compiler like g++ to compile it into an executable. Recommended command: `g++ humansort.cpp -o humansort`.
+# How To Run humansort.cpp
+Get the `humansort.cpp` file and use a compiler like g++ to compile it into an executable.
+
+Recommended command: `g++ humansort.cpp -o humansort`.
+
+# How to Run integersort.cpp
+Get the `integersort.cpp` file and use a compiler like g++ to compile it into an executable.
+
+Recommended command: `g++ integersort.cpp -o integersort`.
+
+# How To Use Them
+
+Open up your terminal and run:
+
+### Windows
+
+`.\humansort.cpp` or `.\integersort.cpp`.
+
+### macOS or Linux
+
+`./humansort.cpp` or `./integersort.cpp`.
